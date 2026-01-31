@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-Digit Comma Separator</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; background-color: #f4f4f9; }
+        .container { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        textarea { width: 100%; height: 100px; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;}
+        button { background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+        .result-box { margin-top: 20px; background: #e9ecef; padding: 15px; border-radius: 4px; word-wrap: break-word; font-family: monospace; font-size: 1.1em; }
+        .copy-btn { background-color: #28a745; margin-top: 10px; font-size: 14px;}
+        .copy-btn:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Split Every 8 Characters</h1>
+    <p>Paste your long number string below:</p>
+    
+    <form method="POST">
+        <textarea name="number_input" placeholder="e.g. 1234567812345678...">{{ user_input }}</textarea>
+        <br>
+        <button type="submit">Process</button>
+    </form>
+
+    {% if result %}
+    <div class="result-box" id="resultText">
+        {{ result }}
+    </div>
+    <button onclick="copyToClipboard()" class="copy-btn">Copy Result</button>
+    {% endif %}
+</div>
+
+<script>
+    function copyToClipboard() {
+        var copyText = document.getElementById("resultText");
+        navigator.clipboard.writeText(copyText.innerText).then(function() {
+            alert("Copied to clipboard!");
+        });
+    }
+</script>
+
+</body>
+</html>
