@@ -22,6 +22,8 @@ def home():
         user_input = request.form.get('number_input', '')
         if user_input:
             result = add_commas_every_8(user_input)
+            # formatted_numbers = add_commas_every_8(user_input)
+            # result = "https://igt.production.sportradar.online/#/?matchIds=" + formatted_numbers  # Prepend "cdrevz" to the result
             
     return render_template('index.html', user_input=user_input, result=result)
 

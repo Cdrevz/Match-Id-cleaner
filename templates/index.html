@@ -19,19 +19,20 @@
 
 <div class="container">
     <h1>Match Ids Cleaner</h1>
-    <p>Paste your long number string below:</p>
+    <p>Paste your string below:</p>
     
     <form method="POST">
-        <textarea name="number_input" placeholder="e.g. 1234567812345678...">{{ user_input }}</textarea>
+        <textarea name="number_input" placeholder="add your text here">{{ user_input }}</textarea>
         <br>
-        <button type="submit">Process</button>
+        <button type="submit">Format</button>
     </form>
 
     {% if result %}
     <div class="result-box" id="resultText">
         {{ result }}
-    </div>
-    <button onclick="copyToClipboard()" class="copy-btn">Copy Result</button>
+    </div class="button-group">
+    <button onclick="copyToClipboard()" class="copy-btn">Copy Match Ids</button>
+    <button onclick="openInNewTab()" class="copy-btn open-btn"> Open in IGT</button>
     {% endif %}
 </div>
 
@@ -39,9 +40,15 @@
     function copyToClipboard() {
         var copyText = document.getElementById("resultText");
         navigator.clipboard.writeText(copyText.innerText).then(function() {
-            alert("Copied to clipboard!");
+            <!-- alert("Copied to clipboard!"); -->
         });
     }
+    function openInNewTab() {
+    var resultText = document.getElementById("resultText").innerText;
+    // Check if it starts with http:// or https://, if not add https://
+    var url = resultText.match(/^https?:\/\//) ? resultText : 'https://igt.production.sportradar.online/#/?matchIds=' + resultText;
+    window.open(url, '_blank');
+}
 </script>
 
 </body>
