@@ -4,8 +4,8 @@ import re
 app = Flask(__name__)
 
 def add_commas_every_8(text):
-    # 1. Clean the input: Remove ALL spaces, tabs, and newlines first
-    clean_text = re.sub(r'\s+', '', text)
+    # 1. Clean the input: Remove ALL non-digit characters
+    clean_text = re.sub(r'\D', '', text)  # \D matches any non-digit character
     
     # 2. Logic: Slice the string from i to i+8
     chunks = [clean_text[i:i+8] for i in range(0, len(clean_text), 8)]
